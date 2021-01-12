@@ -1,4 +1,3 @@
-  
 resource "google_pubsub_topic" "topic" {
   name = var.name
 }
@@ -6,7 +5,7 @@ resource "google_pubsub_topic" "topic" {
 resource "google_cloud_scheduler_job" "pubsub_scheduler" {
   name        = var.name
   region      = var.region
-  description = "Execute ${var.name} function (Cloud Functions)."
+  project     = "${lookup(var.project_name, "${terraform.workspace}")}"
   schedule    = var.cron
   time_zone   = var.time_zone
 

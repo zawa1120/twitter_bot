@@ -1,4 +1,4 @@
 module "twitter_bot" {
-  source = "./module/google_cloud_scheduler_job"
+  source = "./module"
   name   = "twitter_bot"
 }
