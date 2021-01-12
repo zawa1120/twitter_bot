@@ -1,5 +1,9 @@
-**/.terraform/*
+*/.terraform/*
 
-**/.terraform.lock.hcl
+*/.terraform.lock.hcl
 
 .vscode/
+
+*/gcp/*
+
+*/terraform.tfstate.d/*
