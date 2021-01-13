@@ -1,4 +1,5 @@
 variable "name" {
+  default     = "Test"
   type        = string
 }
 
