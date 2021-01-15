@@ -1,8 +1,3 @@
-provider "google" {
-  project     = var.project
-  region      = "us-central1"
-}
-
 resource "google_pubsub_topic" "topic" {
   name = var.name
 }
