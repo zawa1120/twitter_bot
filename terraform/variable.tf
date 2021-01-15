@@ -9,7 +9,7 @@ variable "region" {
 }
 
 variable "project" {
-  default     = "practice cloud function"
+  default     = "helpful-rope-300817"
   type        = string
 }
 
