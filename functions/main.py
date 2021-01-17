@@ -7,5 +7,5 @@ import math
 
 now = datetime.datetime.now()
 
-def main(now):
-    print(now)
+def main():
+    print(1)
