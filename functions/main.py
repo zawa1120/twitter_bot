@@ -1,9 +1,6 @@
-import base64
-import datetime
 import json
 import os
-import re
-import math
+import requests
 
 cr_token = os..environ.get('CR_TOKEN')
 player_tag = os..environ.get('PLAYER_TAG')
