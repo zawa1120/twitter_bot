@@ -14,7 +14,7 @@ variable "project" {
 }
 
 variable "cron" {
-  default     = "0 0 * * *"
+  default     = "0 9 * * *"
   type        = string
 }
 
