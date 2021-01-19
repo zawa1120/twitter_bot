@@ -5,7 +5,7 @@ import requests
 cr_token = os.environ.get('CR_TOKEN')
 
 def get_chests_info(cr_token):
-    url = "https://api.clashroyale.com/v1/players/" + "%23QQYC29J" + "/upcomingchests")
+    url = "https://api.clashroyale.com/v1/players/" + "%23QQYC29J" + "/upcomingchests"
     headers = {
         "cache-control": "max-age=60",
         "content-type": "application/json; charset=utf-8",
