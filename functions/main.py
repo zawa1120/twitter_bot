@@ -16,7 +16,7 @@ def get_chests_info(cr_token, player_tag):
     data = r.json()
     return data
 
-def main(CR_token, player_tag):
+def main(cr_token, player_tag):
     info = get_chests_info(cr_token, player_tag)
 
     name_dic = {'Silver Chest': '銀の宝箱', 'Golden Chest': '金の宝箱', 'Giant Chest': '巨大宝箱',
