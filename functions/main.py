@@ -2,14 +2,10 @@ import json
 import os
 import requests
 
-from urllib.parse import urljoin
-
 cr_token = os.environ.get('CR_TOKEN')
-player_tag = os.environ.get('PLAYER_TAG')
 
-def get_chests_info(cr_token, player_tag):
-    base_url = urljoin('https://api.clashroyale.com/v1/players/', player_tag)
-    url = urljoin(base_url, 'upcomingchests')
+def get_chests_info(cr_token):
+    url = "https://api.clashroyale.com/v1/players/" + "%23QQYC29J" + "/upcomingchests")
     headers = {
         "cache-control": "max-age=60",
         "content-type": "application/json; charset=utf-8",
@@ -18,8 +14,8 @@ def get_chests_info(cr_token, player_tag):
     data = r.json()
     return data
 
-def main(cr_token, player_tag):
-    info = get_chests_info(cr_token, player_tag)
+def main(cr_token):
+    info = get_chests_info(cr_token)
 
     chests_dic = {'Silver Chest': '銀の宝箱', 'Golden Chest': '金の宝箱', 'Giant Chest': '巨大宝箱',
                 'Magical Chest': '魔法の宝箱', 'Epic Chest': 'スーパーレア宝箱', 
