@@ -1,26 +1,31 @@
 import json
 import os
-import requests
+import base64
 
-cr_token = os.environ.get('CR_TOKEN')
+import tweepy
 
-def get_chests_info(cr_token):
-    url = "https://api.clashroyale.com/v1/players/" + "%23QQYC29J" + "/upcomingchests"
-    headers = {
-        "cache-control": "max-age=60",
-        "content-type": "application/json; charset=utf-8",
-        "authorization": "Bearer  %s" % cr_token}
-    r = requests.get(url, headers=headers)
-    data = r.json()
-    return data
+consumer_key = os.environ.get('CONSUMER_KEY')
+consumer_key_secret = os.environ.get('CONSUMER_KEY_SECRET')
+access_token = os.environ.get('ACCESS_TOKEN')
+access_token_secret = os.environ.get('ACCESS_TOKEN_SECRET')
 
-def main(cr_token):
-    info = get_chests_info(cr_token)
+def auth_keys(CONSUMER_KEY, CONSUMER_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET):
+    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_KEY_SECRET)
+    return auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
-    chests_dic = {'Silver Chest': '銀の宝箱', 'Golden Chest': '金の宝箱', 'Giant Chest': '巨大宝箱',
-                'Magical Chest': '魔法の宝箱', 'Epic Chest': 'スーパーレア宝箱', 
-                'Mega Lightning Chest': 'メガライトニング宝箱', 'Legendary Chest': 'ウルトラレア宝箱'}
+def main(event, context):
+    '''Triggered from a message on a Cloud Pub/Sub topic.
+    Args:
+         event (dict): Event payload.
+         context (google.cloud.functions.Context): Metadata for the event.
+    '''
 
-    show_list = [chests_dic[info['items'][i]['name']] for i in range(5)]
-    
-    print(*show_list)
+    pubsub_message = base64.b64decode(event['data']).decode('utf-8')
+    if pubsub_message:
+        text = pubsub_message
+
+    else:
+        text = "楽天紹介コード\\JX8hyMeQ9vhi\\お互いポイント貰えます♪"
+
+    api = auth_keys(consumer_key, consumer_key_secret, access_token, access_token_secret)
+    api.update_status(text)
