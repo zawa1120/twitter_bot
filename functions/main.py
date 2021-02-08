@@ -2,7 +2,7 @@ import json
 import os
 import base64
 
-import requests_oauthlib
+from requests_oauthlib import OAuth1Session
 
 consumer_key = os.environ.get('CONSUMER_KEY')
 consumer_key_secret = os.environ.get('CONSUMER_KEY_SECRET')
