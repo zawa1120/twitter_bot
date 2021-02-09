@@ -30,6 +30,6 @@ def main(event, context):
     else:
         text = "楽天モバイル紹介コード\n\nJX8hyMeQ9vhi\n\n楽天ポイントが1000pt貰えます♪\n\n#楽天モバイル\n#楽天モバイル紹介コード"
 
-    params = {"status": text }
+    params = {"status": text}
     twitter = auth_keys(consumer_key, consumer_key_secret, access_token, access_token_secret)
-    twitter.post(URL, params = params)
+    twitter.post(URL, params=params)
