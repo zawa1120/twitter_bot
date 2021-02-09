@@ -8,13 +8,8 @@ variable "region" {
   type        = string
 }
 
-variable "project" {
-  default     = "helpful-rope-300817"
-  type        = string
-}
-
 variable "cron" {
-  default     = "0 9 * * *"
+  default     = "0 12 * * *"
   type        = string
 }
 

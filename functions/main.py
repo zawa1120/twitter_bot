@@ -9,6 +9,8 @@ consumer_key_secret = os.environ.get('CONSUMER_KEY_SECRET')
 access_token = os.environ.get('ACCESS_TOKEN')
 access_token_secret = os.environ.get('ACCESS_TOKEN_SECRET')
 
+project_name = os.environ.get('PROJECT_NAME')
+
 URL = 'https://api.twitter.com/1.1/statuses/update.json'
 
 def auth_keys(CONSUMER_KEY, CONSUMER_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET):
@@ -22,7 +24,7 @@ def main(event, context):
     '''
 
     pubsub_message = base64.b64decode(event['data']).decode('utf-8')
-    if pubsub_message:
+    if pubsub_message != project_name:
         text = pubsub_message
         
     else:
