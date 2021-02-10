@@ -1,15 +1,10 @@
-import json
 import os
-import base64
-
 from requests_oauthlib import OAuth1Session
 
 consumer_key = os.environ.get('CONSUMER_KEY')
 consumer_key_secret = os.environ.get('CONSUMER_KEY_SECRET')
 access_token = os.environ.get('ACCESS_TOKEN')
 access_token_secret = os.environ.get('ACCESS_TOKEN_SECRET')
-
-project_name = os.environ.get('PROJECT_NAME')
 
 URL = 'https://api.twitter.com/1.1/statuses/update.json'
 
@@ -20,5 +15,9 @@ def main(event, context):
     text = "楽天モバイル紹介コード\n\nJX8hyMeQ9vhi\n\n楽天ポイントが1000pt貰えます♪\n\n#楽天モバイル\n#楽天モバイル紹介コード"
 
     params = {"status": text}
-    twitter = auth_keys(consumer_key, consumer_key_secret, access_token, access_token_secret)
-    twitter.post(URL, params=params)
+    try:
+        twitter = auth_keys(consumer_key, consumer_key_secret, access_token, access_token_secret)
+        twitter.post(URL, params=params)
+
+    except Exception as e:
+        print(e)
