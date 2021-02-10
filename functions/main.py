@@ -17,9 +17,9 @@ def main(event, context):
     text = "楽天モバイル紹介コード\n\nJX8hyMeQ9vhi\n\n楽天ポイントが1000pt貰えます♪\n\n#楽天モバイル\n#楽天モバイル紹介コード"
 
     params = {"status": text}
-    try:
-        twitter = auth_keys(consumer_key, consumer_key_secret, access_token, access_token_secret)
-        twitter.post(URL, params=params)
+    twitter = auth_keys(consumer_key, consumer_key_secret, access_token, access_token_secret)
+    req = twitter.post(URL, params=params)
 
-    except Exception as e:
-        print(e)
+    if req.status_code != 200:
+        print("Failed. - Responce Status Code : {} - Error Code : {}".format(req.status_code, req.json()))
+        raise
