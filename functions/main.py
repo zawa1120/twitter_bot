@@ -1,4 +1,6 @@
 import os
+import json
+
 from requests_oauthlib import OAuth1Session
 
 consumer_key = os.environ.get('CONSUMER_KEY')
