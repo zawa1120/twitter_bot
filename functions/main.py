@@ -15,16 +15,23 @@ def auth_keys(CONSUMER_KEY, CONSUMER_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECR
     return OAuth1Session(CONSUMER_KEY, CONSUMER_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
 def main(event, context):
-    l1 = ["楽天モバイル紹介コード", "楽天モバイル紹介コード♪", "楽天モバイル紹介コード☆", "楽天モバイル紹介コード！"]
-    l2 = ["上記の紹介コードで楽天ポイントが1000pt貰えます", "上記の紹介コードで楽天ポイントが1000pt貰えます♪",
-          "上記の紹介コードで楽天ポイントが1000pt貰えます☆", "上記の紹介コードで楽天ポイントが1000pt貰えます！"]
+    l1 = ["楽天モバイル紹介コード", "楽天モバイル紹介コード♪", "楽天モバイル紹介コード☆"]
+    l2 = ["上記の紹介コードで楽天ポイントが1000pt貰えます", "上記の紹介コードで楽天ポイントが1000pt貰えます♪", "上記の紹介コードで楽天ポイントが1000pt貰えます☆"]
 
-    text = random.choice(l1) + "\n\nJX8hyMeQ9vhi\n\n" + random.choice(l2) + "\n\n#楽天モバイル\n#楽天モバイル紹介コード"
-
-    params = {"status": text}
     twitter = auth_keys(consumer_key, consumer_key_secret, access_token, access_token_secret)
-    req = twitter.post(URL, params=params)
 
-    if req.status_code != 200:
-        print("Failed. - Responce Status Code : {} - Error Code : {}".format(req.status_code, req.json()))
-        raise
+    while True:
+        text = random.choice(l1) + "\n\nJX8hyMeQ9vhi\n\n" + random.choice(l2) + "\n\n#楽天モバイル\n#楽天モバイル紹介コード"
+
+        params = {"status": text}
+        req = twitter.post(URL, params=params)
+        
+        if req.status_code == 200:
+            break
+
+        elif req.json()['errors'][0]['code'] = 187:
+            continue
+
+        else:
+            print("Failed. - Responce Status Code : {} - Error Code : {}".format(req.status_code, req.json()))
+            raise
