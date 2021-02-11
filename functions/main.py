@@ -29,7 +29,7 @@ def main(event, context):
         if req.status_code == 200:
             break
 
-        elif req.json()['errors'][0]['code'] = 187:
+        elif req.json()['errors'][0]['code'] == 187:
             continue
 
         else:
