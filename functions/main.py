@@ -33,5 +33,5 @@ def main(event, context):
             continue
 
         else:
-            print("Failed. - Responce Status Code : {} - Error Code : {}".format(req.status_code, req.json()))
+            print("Failed - Responce Status Code: {} - Errors: {}".format(req.status_code, req.json()['errors'][0]))
             raise
