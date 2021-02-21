@@ -1,6 +1,9 @@
 # twitter_bot
 
 ## How to deploy Terraform
+```
+Terraform version 0.14.7.
+```
 1. Connect a pass
 ```
 $ cd terraform
