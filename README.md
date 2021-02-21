@@ -1,4 +1,5 @@
 # twitter_bot
+Practice Google Cloud Platform and Terraform
 
 ## How to deploy Terraform
 ```
@@ -16,7 +17,8 @@ $ gcloud projects add-iam-policy-binding [PROJECT_ID] --member serviceAccount:[t
 3. Generate a service account key and set the GOOGLE_APPLICATION_CREDENTIALS environment variable to the path of the service account key. Name the file "account.json".
 ```
 $ gcloud iam service-accounts keys create [gcp/account.json] --iam-account [terraform-serviceaccount_name]@[PROJECT_ID].iam.gserviceaccount.com
-$ export GOOGLE_CLOUD_KEYFILE_JSON=[gcp/account.json]
+$ (win)set GOOGLE_CLOUD_KEYFILE_JSON=[gcp/account.json]
+$ (mac)export GOOGLE_CLOUD_KEYFILE_JSON=[gcp/account.json]
 ```
 4. Initialize terraform script.
 ```
@@ -35,3 +37,14 @@ $ terraform apply
 https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account
 https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/provider_reference
 https://www.devsamurai.com/ja/gcp-terraform-101/
+
+## How to deploy Cloud functions
+1. Connect a pass
+```
+$ cd functions
+```
+2. Deploy Cloud functions
+```
+$ (win)gcloud functions deploy twitter_bot --region us-central1 --entry-point main --runtime python37 --timeout 540s --env-vars-file env.yaml --trigger-topic twitter_bot
+$ (mac)bash deploy.sh
+```
