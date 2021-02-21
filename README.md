@@ -1,5 +1,6 @@
 # twitter_bot
 Practice Google Cloud Platform and Terraform
+OS: Windows 10
 
 ## How to deploy Terraform
 ```
